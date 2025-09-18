@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YOLO Parking Detection</title>
+    <style>
+        body {
+            background: #1e1e2e;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #00ffcc;
+        }
+
+        button {
+            background: #00ffcc;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #00ccaa;
+        }
+
+        #video-box {
+            margin: 20px auto;
+            border: 3px solid #00ffcc;
+            width: 80%;
+            max-width: 900px;
+            display: none;
+        }
+
+        /* hidden by default */
+        #counts {
+            margin-top: 20px;
+            font-size: 18px;
+            display: none;
+        }
+
+        /* hidden by default */
+        #counts span {
+            font-weight: bold;
+        }
+
+
+
+                /* --- HEADER --- */
+        header {
+            background: #2b2b3c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            color: #00ffcc;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00ffcc;
+        }
+        .logout-btn {
+            background: #00ffcc;
+            color: black;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            background: #00ccaa;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #2b2b3c;
+            color: #ccc;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        h1 { color: #00ffcc; margin-top: 30px; }
+        button {
+            background: #00ffcc;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover { background: #00ccaa; }
+        #video-box {
+            margin: 20px auto;
+            border: 3px solid #00ffcc;
+            width: 80%;
+            max-width: 900px;
+            display: none; /* hidden by default */
+        }
+        #counts {
+            margin-top: 20px;
+            font-size: 18px;
+            display: none; /* hidden by default */
+        }
+        #counts span { font-weight: bold; }
+    </style>
+</head>
+
+<body>
+
+        <header>
+        <div class="logo">YOLO Parking Detection</div>
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'history' %}">History</a>
+            <a href="{% url 'faq' %}">FAQ</a>
+            <a href="{% url 'feedback' %}">User Feedback</a>
+            <a href="{% url 'logout' %}">
+            <button class="logout-btn">Logout</button>
+            </a>
+        </div>
+    </header>
+
+
+    <h1>YOLO Parking Detection</h1>
+
+    <!-- Start Detection button -->
+    <button id="start-btn">Show live parking status</button>
+
+    <!-- Video feed (hidden until button clicked) -->
+    <div id="video-box">
+        <img id="video-stream" width="100%" alt="Parking Detection Stream">
+    </div>
+
+    <!-- Live slot counts (hidden until video starts) -->
+    <div id="counts">
+        <p>Available Slots: <span id="available">-</span></p>
+        <p>Occupied Slots: <span id="occupied">-</span></p>
+    </div>
+
+
+    <footer>
+        &copy; 2025 YOLO Parking Detection. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById("start-btn").addEventListener("click", function () {
+            // Show video + counts
+            document.getElementById("video-box").style.display = "block";
+            document.getElementById("counts").style.display = "block";
+            document.getElementById("video-stream").src = "{% url 'video_feed' %}";
+
+            // Hide button after click
+            this.style.display = "none";
+
+            // Start updating counts from Django
+            updateCounts();
+            setInterval(updateCounts, 1000);
+        });
+
+        async function updateCounts() {
+            try {
+                const response = await fetch("/latest_counts/");
+                const data = await response.json();
+                document.getElementById("available").textContent = data.available;
+                document.getElementById("occupied").textContent = data.occupied;
+            } catch (error) {
+                console.error("Error fetching counts:", error);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About – YOLO Parking Detection</title>
+    <style>
+        body {
+            background: #1e1e2e;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: #2b2b3c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            color: #00ffcc;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00ffcc;
+        }
+        .logout-btn {
+            background: #00ffcc;
+            color: black;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            background: #00ccaa;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #2b2b3c;
+            color: #ccc;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #2b2b3c;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        .about-section h1 {
+            text-align: center;
+            color: #00ffcc;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        .about-section h2 {
+            margin-top: 30px;
+            color: #00ffcc;
+        }
+        .about-section ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .about-section li {
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+        <header>
+        <div class="logo">YOLO Parking Detection</div>
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'history' %}">History</a>
+            <a href="{% url 'faq' %}">FAQ</a>
+            <a href="{% url 'feedback' %}">User Feedback</a>
+            <a href="{% url 'logout' %}">
+            <button class="logout-btn">Logout</button>
+            </a>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-section">
+        <h1>About YOLO Parking Detection</h1>
+        <p>
+            YOLO Parking Detection is an AI-powered system that uses the YOLO (You Only Look Once) object detection algorithm 
+            to monitor parking lots in real time. It helps administrators and users see which parking slots are available 
+            or occupied instantly, reducing time and improving efficiency.
+        </p>
+        <p>
+            This project integrates computer vision, deep learning, and a user-friendly dashboard to provide a seamless 
+            parking management solution.
+        </p>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li>Real-time detection of available and occupied parking slots</li>
+            <li>Live video streaming with parking status overlay</li>
+            <li>Automated slot counting and reporting</li>
+            <li>Responsive web interface for any device</li>
+        </ul>
+
+        <h2>Our Mission</h2>
+        <p>
+            Our mission is to make parking simpler, smarter, and faster by combining modern AI technologies with 
+            intuitive web solutions.
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 YOLO Parking Detection. All rights reserved.
+    </footer>
+
+</body>
+</html>

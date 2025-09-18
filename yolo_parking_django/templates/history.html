@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History – YOLO Parking Detection</title>
+    <style>
+        body {
+            background: #1e1e2e;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: #2b2b3c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            color: #00ffcc;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00ffcc;
+        }
+        .logout-btn {
+            background: #00ffcc;
+            color: black;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            background: #00ccaa;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #2b2b3c;
+            color: #ccc;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        /* --- TABLE --- */
+        .history-section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #2b2b3c;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        .history-section h1 {
+            text-align: center;
+            color: #00ffcc;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e1e2e;
+        }
+        th, td {
+            border: 1px solid #00ffcc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #00ffcc;
+            color: black;
+        }
+        tr:nth-child(even) {
+            background: #2b2b3c;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+        <header>
+        <div class="logo">YOLO Parking Detection</div>
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'history' %}">History</a>
+            <a href="{% url 'faq' %}">FAQ</a>
+            <a href="{% url 'feedback' %}">User Feedback</a>
+            <a href="{% url 'logout' %}">
+            <button class="logout-btn">Logout</button>
+            </a>
+        </div>
+    </header>
+
+    <!-- HISTORY SECTION -->
+    <section class="history-section">
+        <h1>Parking Detection History (Latest 100)</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Timestamp</th>
+                    <th>Occupied</th>
+                    <th>Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in results %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.timestamp|date:"Y-m-d H:i:s" }}</td>
+                    <td>{{ item.occupied }}</td>
+                    <td>{{ item.available }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No history available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 YOLO Parking Detection. All rights reserved.
+    </footer>
+
+</body>
+</html>

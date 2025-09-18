@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FAQ – YOLO Parking Detection</title>
+    <style>
+        body {
+            background: #1e1e2e;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: #2b2b3c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            color: #00ffcc;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00ffcc;
+        }
+        .logout-btn {
+            background: #00ffcc;
+            color: black;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            background: #00ccaa;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #2b2b3c;
+            color: #ccc;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        /* --- FAQ --- */
+        .faq-section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #2b2b3c;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        .faq-section h1 {
+            text-align: center;
+            color: #00ffcc;
+            margin-bottom: 20px;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #00ffcc;
+        }
+        .faq-item h3 {
+            color: #00ffcc;
+            margin-bottom: 5px;
+        }
+        .faq-item p {
+            line-height: 1.6;
+            font-size: 15px;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+        <header>
+        <div class="logo">YOLO Parking Detection</div>
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'history' %}">History</a>
+            <a href="{% url 'faq' %}">FAQ</a>
+            <a href="{% url 'feedback' %}">User Feedback</a>
+            <a href="{% url 'logout' %}">
+            <button class="logout-btn">Logout</button>
+            </a>
+        </div>
+    </header>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+        <h1>Frequently Asked Questions</h1>
+        {% for item in faqs %}
+        <div class="faq-item">
+            <h3>{{ item.question }}</h3>
+            <p>{{ item.answer }}</p>
+        </div>
+        {% empty %}
+        <p>No FAQs available at the moment.</p>
+        {% endfor %}
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 YOLO Parking Detection. All rights reserved.
+    </footer>
+
+</body>
+</html>
