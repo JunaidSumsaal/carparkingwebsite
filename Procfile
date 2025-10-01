@@ -1,0 +1,1 @@
+web: gunicorn yolo_parking_django.wsgi --log-file -

@@ -55,7 +55,7 @@ def signup(request):
             messages.error(request, "Password must contain at least one special character (!@#$ etc).")
             return render(request, "signup.html")
 
-        # Save user
+        # ✅ Save user
         user = Registration(username=username, email=email, password=password)
         user.save()
         messages.success(request, "Account created successfully! Please login.")
@@ -152,7 +152,7 @@ def video_feed(request):
                                  content_type="multipart/x-mixed-replace; boundary=frame")
 
 
-#  New: JSON endpoint for live counts
+# 🔹 New: JSON endpoint for live counts
 def latest_counts(request):
     result = DetectionResult.objects.order_by("-timestamp").first()
     if result:

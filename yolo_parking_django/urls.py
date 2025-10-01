@@ -3,5 +3,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('app.urls')),  # include your app routes
+    path('auth/', include('auth_service.urls')),  # 🔹 new microservice (signup/login APIs)
+    path('', include('app.urls')),                # 🔹 your existing app
 ]

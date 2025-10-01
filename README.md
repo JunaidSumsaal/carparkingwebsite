@@ -1,2 +1,2 @@
-# carparkingwebsite
-my project fro msc
+# parking-lot-website
+parking lot website 
