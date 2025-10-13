@@ -1,6 +1,6 @@
 import pytest
 from django.core.exceptions import ValidationError
-from myapp.models import Registration  # replace 'myapp' with your actual app name
+from app.models import Registration  
 
 
 @pytest.mark.django_db
@@ -41,4 +41,5 @@ def test_invalid_email():
         password="password123"
     )
     with pytest.raises(ValidationError):
-        user.full_clean()  # run Django validation
+        user.full_clean() 
+
