@@ -55,7 +55,7 @@ def signup(request):
             messages.error(request, "Password must contain at least one special character (!@#$ etc).")
             return render(request, "signup.html")
 
-        # ✅ Save user
+        #  Save user
         user = Registration(username=username, email=email, password=password)
         user.save()
         messages.success(request, "Account created successfully! Please login.")

@@ -53,7 +53,7 @@ def check_occupancy(boxes, polygons):
 # -----------------------------
 cap = cv2.VideoCapture(VIDEO_PATH)
 if not cap.isOpened():
-    print(f"❌ Could not open {VIDEO_PATH}")
+    print(f" Could not open {VIDEO_PATH}")
     exit()
 
 paused = False
@@ -63,7 +63,7 @@ while True:
     if not paused:
         ret, frame = cap.read()
         if not ret:
-            print("✅ Video ended")
+            print(" Video ended")
             break
 
         frame_resized = cv2.resize(frame, (WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -126,4 +126,4 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-print("✅ Done")
+print(" Done")
